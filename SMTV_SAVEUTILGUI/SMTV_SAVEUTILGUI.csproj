@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <Nullable>enable</Nullable>
+	  
+	<RuntimeIdentifiers>osx-x64</RuntimeIdentifiers>
+	<UseAppHost>true</UseAppHost>
+
+	  <CFBundleName>AppName</CFBundleName>
+	  <!-- Also defines .app file name -->
+	  <CFBundleDisplayName>MyBestThingEver</CFBundleDisplayName>
+	  <CFBundleIdentifier>com.example</CFBundleIdentifier>
+	  <CFBundleVersion>1.0.0</CFBundleVersion>
+	  <CFBundleShortVersionString>1</CFBundleShortVersionString>
+	  <CFBundlePackageType>APPL</CFBundlePackageType>
+	  <CFBundleSignature>????</CFBundleSignature>
+	  <CFBundleExecutable>AppName</CFBundleExecutable>
+	  <CFBundleIconFile>AppName.icns</CFBundleIconFile>
+	  <!-- Will be copied from output directory -->
+	  <NSPrincipalClass>NSApplication</NSPrincipalClass>
+	  <NSHighResolutionCapable>true</NSHighResolutionCapable>
+	  
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove=".gitignore" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="0.10.10" />
+    <PackageReference Include="Avalonia.Desktop" Version="0.10.10" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.10" />
+    <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+	<PackageReference Include="Dotnet.Bundle" Version="*" />
+   </ItemGroup>
+</Project>
